@@ -4,6 +4,7 @@ import javax.jws.WebService;
 
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,15 @@ import com.mkingzhu.wechat.center.server.webservice.facade.WechatTokenService;
 @WebService
 public class WechatTokenServiceImpl implements WechatTokenService {
     @Autowired
+    private WxMpInMemoryConfigStorage wxMpConfigStorage;
+
+    @Autowired
     private WxMpService wxMpService;
+
+    @Override
+    public String getAppId() {
+        return wxMpConfigStorage.getAppId();
+    }
 
     @Override
     public String getAccessToken()
