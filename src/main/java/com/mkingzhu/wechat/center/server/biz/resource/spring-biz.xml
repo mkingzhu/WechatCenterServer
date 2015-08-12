@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-4.2.xsd">  
+  <context:annotation-config />
+
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>file:/home/tomcatconfig/center/mp.properties</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="wxMpConfigStorage" class="me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage">
+    <property name="appId">
+      <value>${mp.appId}</value>
+    </property>
+    <property name="secret">
+      <value>${mp.secret}</value>
+    </property>
+    <property name="token">
+      <value>${mp.token}</value>
+    </property>
+    <property name="aesKey">
+      <value>${mp.aesKey}</value>
+    </property>
+  </bean>
+  
+  <bean id="wxMpService" class="com.mkingzhu.wechat.center.server.biz.mp.WxMpServiceImpl">
+    <property name="wxMpConfigStorage" ref="wxMpConfigStorage" />
+  </bean>
+</beans>
