@@ -2,6 +2,7 @@ package com.mkingzhu.wechat.center.server.webservice.service;
 
 import javax.jws.WebService;
 
+import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 
@@ -15,20 +16,20 @@ public class WechatTokenServiceImpl implements WechatTokenService {
     private WxMpService wxMpService;
 
     @Override
-    public String getAccessToken() {
-        try {
-            return wxMpService.getAccessToken();
-        } catch (WxErrorException e) {
-            return "";
-        }
+    public String getAccessToken()
+            throws WxErrorException {
+        return wxMpService.getAccessToken();
     }
 
     @Override
-    public String getJsapiTicket() {
-        try {
-            return wxMpService.getJsapiTicket();
-        } catch (WxErrorException e) {
-            return "";
-        }
+    public String getJsapiTicket()
+            throws WxErrorException {
+        return wxMpService.getJsapiTicket();
+    }
+
+    @Override
+    public WxJsapiSignature createJsapiSignature(String url)
+            throws WxErrorException {
+        return wxMpService.createJsapiSignature(url);
     }
 }

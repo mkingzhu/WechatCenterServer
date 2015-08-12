@@ -101,12 +101,6 @@
     </dependency>
 
     <dependency>
-      <groupId>me.chanjar</groupId>
-      <artifactId>weixin-java-mp</artifactId>
-      <version>1.2.0</version>
-    </dependency>
-
-    <dependency>
       <groupId>com.mkingzhu.wechat</groupId>
       <artifactId>center-server-service</artifactId>
       <version>1.0.0</version>
